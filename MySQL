@@ -1,0 +1,30 @@
+-- Database banayein
+CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
+
+-- Users table
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE,
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    role ENUM('user', 'admin') DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Products table
+CREATE TABLE products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200),
+    price DECIMAL(10,2),
+    description TEXT,
+    image VARCHAR(255),
+    category VARCHAR(100),
+    stock INT DEFAULT 0,
+    status ENUM('active', 'inactive') DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Sample Admin User
+INSERT INTO users (username, email, password, role) 
+VALUES ('admin', 'admin@ecommerce.com', MD5('admin123'), 'admin');
